@@ -1,0 +1,7 @@
+SITE CHARPENTE GUAGLIO — DOSSIER COMPLET
+
+Ce dossier contient le site et 29 photos de chantier issues des images envoyées dans la conversation.
+
+Pour publier : remplacer les fichiers index.html, style.css et script.js du dépôt GitHub, puis ajouter le dossier assets entier. Conserver exactement les noms des fichiers.
+
+La galerie présente toutes les photos sélectionnées et permet de les agrandir et de les faire défiler.
