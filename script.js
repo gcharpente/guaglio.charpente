@@ -1,5 +1,5 @@
 // Ordre chronologique éditorial : fondations, atelier, montage, couverture, finitions.
-const photos = [
+const ossaturePhotos = [
   { file: 23, caption: "La dalle — le chantier commence" },
   { file: 1, caption: "À l’atelier — préparation de la charpente" },
   { file: 22, caption: "Le façonnage des assemblages" },
@@ -7,7 +7,6 @@ const photos = [
   { file: 2, caption: "Levage des panneaux sur la dalle" },
   { file: 3, caption: "L’ossature se dessine" },
   { file: 19, caption: "Mise en place d’une ferme traditionnelle" },
-  { file: 18, caption: "Détail d’un assemblage de charpente" },
   { file: 20, caption: "Ajustement des pièces de bois" },
   { file: 4, caption: "La charpente apparente à l’intérieur" },
   { file: 17, caption: "Le dessin des fermes sous le toit" },
@@ -29,7 +28,22 @@ const photos = [
   { file: 15, caption: "Le chantier terminé" }
 ];
 
+const renovationPhotos = [
+  { file: "toiture-avant-01.jpeg", caption: "Avant — état de la toiture" },
+  { file: "toiture-avant-02.jpeg", caption: "Après — remaniement de la toiture" },
+  { file: "renovation-04.jpeg", caption: "Vue d’ensemble de la bâtisse rénovée" },
+  { file: "renovation-03.jpeg", caption: "Détail du porche et de la charpente" }
+];
+
+const terrassePhotos = [
+  { file: "terrasse-01.jpeg", caption: "Vue d’ensemble de la terrasse en bois et de la pergola" },
+  { file: "terrasse-02.jpeg", caption: "Détail des marches et du garde-corps en bois" },
+  { file: "terrasse-03.jpeg", caption: "La terrasse achevée, vue depuis le jardin" }
+];
+
 let current = 0;
+let photos = ossaturePhotos;
+let lastTrigger = null;
 const box = document.querySelector("#lightbox");
 const large = document.querySelector("#large");
 const counter = document.querySelector("#counter");
@@ -39,23 +53,29 @@ const closeButton = document.querySelector(".close");
 function show(index) {
   current = (index + photos.length) % photos.length;
   const photo = photos[current];
-  large.src = `chantier-${String(photo.file).padStart(2, "0")}.jpg`;
+  large.src = typeof photo.file === "number" ? `chantier-${String(photo.file).padStart(2, "0")}.jpg` : photo.file;
   large.alt = photo.caption;
   caption.textContent = photo.caption;
   counter.textContent = `${String(current + 1).padStart(2, "0")} / ${String(photos.length).padStart(2, "0")}`;
 }
 
-document.querySelector("#open-gallery").addEventListener("click", () => {
+function openGallery(trigger, items) {
+  lastTrigger = trigger;
+  photos = items;
   show(0);
   box.classList.add("open");
   box.setAttribute("aria-hidden", "false");
   closeButton.focus();
-});
+}
+
+document.querySelector("#open-gallery").addEventListener("click", event => openGallery(event.currentTarget, ossaturePhotos));
+document.querySelector("#open-renovation").addEventListener("click", event => openGallery(event.currentTarget, renovationPhotos));
+document.querySelector("#open-terrasse").addEventListener("click", event => openGallery(event.currentTarget, terrassePhotos));
 
 function close() {
   box.classList.remove("open");
   box.setAttribute("aria-hidden", "true");
-  document.querySelector("#open-gallery").focus();
+  if (lastTrigger) lastTrigger.focus();
 }
 
 closeButton.addEventListener("click", close);
