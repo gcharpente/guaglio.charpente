@@ -36,7 +36,7 @@ const renovationPhotos = [
 ];
 
 const terrassePhotos = [
-  { file: "terrasse-01.jpeg", caption: "Vue d’ensemble de la terrasse en bois et de la pergola" },
+  { file: "terrasse-01.jpeg", caption: "Vue d’ensemble de la terrasse en bois" },
   { file: "terrasse-02.jpeg", caption: "Détail des marches et du garde-corps en bois" },
   { file: "terrasse-03.jpeg", caption: "La terrasse achevée, vue depuis le jardin" }
 ];
