@@ -150,6 +150,7 @@ footer { display: flex; align-items: center; justify-content: space-between; gap
   .project-overlay { padding: 21px; }
   .project-overlay strong { font-size: 28px; }
   .project-bottom { align-items: flex-start; flex-direction: column; margin-top: 20px; }
+  .project-bottom small { flex: 0 0 auto; }
   .project-bottom b { padding: 11px 13px; }
   .gallery-footnote { align-items: flex-start; font-size: 9px; line-height: 1.6; }
   .contact { grid-template-columns: 1fr; padding: 61px 6vw; }
